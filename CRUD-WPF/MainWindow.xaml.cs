@@ -24,11 +24,12 @@ namespace CRUD_WPF
     public partial class MainWindow : Window
     {
 
-		public MainWindow()
+        public MainWindow()
         {
             InitializeComponent();
-			// lbUsers.ItemsSource = users;
-		}
+            DatabaseLib.DatabaseHandler db = new DatabaseLib.DatabaseHandler();
+            // lbUsers.ItemsSource = users;
+        }
 
         private void Tab_Change(object sender, SelectionChangedEventArgs e)
         {

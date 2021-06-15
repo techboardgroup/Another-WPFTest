@@ -21,28 +21,49 @@ namespace CRUD_WPF.Pages
     /// </summary>
     public partial class Ticket : Page
     {
-        private ObservableCollection<Models.Ticket> tickets = new ObservableCollection<Models.Ticket>();
+        private ObservableCollection<Models.Ticket> ticket = new ObservableCollection<Models.Ticket>();
+        private ObservableCollection<Models.Category> categories = new ObservableCollection<Models.Category>();
 
         public Ticket()
         {
             InitializeComponent();
-            tickets.Add(new Models.Ticket()
-            {
-                Category = "hello",
-                Date = new DateTime(),
-                Description = "ok",
-                Name = "yes"
-            });
+        }
+
+        private void ClearForm()
+        {
+            txtDeadline.SelectedDate = null;
+            txtDescription.Text = "";
+            txtName.Text = "";
+            comboCategory.SelectedItem = null;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (comboCategory.SelectedItem != null && txtDeadline.SelectedDate != null)
+            {
+                ticket.Add(new Models.Ticket()
+                {
+                    Category = (string)comboCategory.SelectedItem,
+                    Deadline = (DateTime)txtDeadline.SelectedDate,
+                    Description = txtDescription.Text,
+                    Name = txtName.Text
+                });
+                App.Current.Properties["ticket"] = ticket;
+                ClearForm();
+            }
         }
 
-        private void cmbCategory_DropDownOpened(object sender, EventArgs e)
+        private void ComboBox_DropDownOpened(object sender, EventArgs e)
         {
-            ObservableCollection<Models.Category> category = (ObservableCollection<Models.Category>)App.Current.Properties["category"];
-            //cmbCategory.Items = category;
+            comboCategory.Items.Clear();
+            if (App.Current != null && App.Current.Properties != null && App.Current.Properties["category"] != null)
+            {
+                categories = (ObservableCollection<Models.Category>)App.Current.Properties["category"];
+                foreach(Models.Category singleCat in categories)
+                {
+                    comboCategory.Items.Add(singleCat.Name);
+                }
+            }
         }
     }
 }

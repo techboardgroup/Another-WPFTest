@@ -3,11 +3,106 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:CRUD_WPF.Pages"
+      xmlns:local="clr-namespace:CRUD_WPF.Pages" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:system="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Assignment">
+      d:DesignHeight="500" d:DesignWidth="800"
+      Title="Assignment" Loaded="Page_Loaded">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="1.5*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="16" Orientation="Vertical">
+            <GroupBox  Header="Select a ticket ..." Height="448">
+                <ListView Name="lbTicket" Grid.Row="1" Height="366" VerticalAlignment="Top" PreviewMouseLeftButtonUp="lbTicket_PreviewMouseLeftButtonUp">
+                    <ListView.View>
+                        <GridView>
+                            <GridView.Columns>
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Padding="16 0 0 0" Text="{Binding Name}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                    <GridViewColumn.Header>
+                                        <TextBlock Text="Name"></TextBlock>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Padding="16 0 0 0" Text="{Binding Category}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                    <GridViewColumn.Header>
+                                        <TextBlock Text="Category"></TextBlock>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Padding="16 0 0 0" Text="{Binding Path=Deadline, StringFormat=dd-MM-yyyy}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                    <GridViewColumn.Header>
+                                        <TextBlock Text="Deadline"></TextBlock>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Padding="16 0 0 0" Text="{Binding Description}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                    <GridViewColumn.Header>
+                                        <TextBlock Text="Description"></TextBlock>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </GroupBox>
+
+        </StackPanel>
+
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="6*"/>
+            </Grid.RowDefinitions>
+        </Grid>
+
+        <materialDesign:DialogHost  x:Name="dlgAssign" IsOpen="False" DialogTheme="Inherit">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel Width="400" Height="300">
+                    <TextBlock Text="Assign this ticket"  Margin="0,50,0,0"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" FontWeight="Bold"></TextBlock>
+                    <TextBlock Margin="16 16 0 0"> This ticket will be assigned to user :  </TextBlock>
+                    <ComboBox  Margin="16" x:Name="comboUsers" />
+
+                    <Button Style="{StaticResource MaterialDesignFlatButton}" IsDefault="True"
+                        Margin="0 8 8 0" Command="materialDesign:DialogHost.CloseDialogCommand" Click="ButtonSaveDialog_Click" >
+                        Save
+                    </Button>
+                    <Button Style="{StaticResource MaterialDesignFlatButton}"
+                         IsCancel="True" Margin="0 8 8 0" 
+                         Command="materialDesign:DialogHost.CloseDialogCommand">
+                        Cancel
+                    </Button>
+
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
+
+
     </Grid>
+
 </Page>

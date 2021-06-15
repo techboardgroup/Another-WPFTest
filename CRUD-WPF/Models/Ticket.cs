@@ -11,7 +11,7 @@ namespace CRUD_WPF.Models
 	{
 		private string _name;
 
-		private DateTime _date;
+		private DateTime _deadline;
 
 		private string _category;
 
@@ -30,15 +30,15 @@ namespace CRUD_WPF.Models
 			}
 		}
 
-		public DateTime Date
+		public DateTime Deadline
 		{
-			get { return this._date; }
+			get { return this._deadline; }
 			set
 			{
-				if (this._date != value)
+				if (this._deadline!= value)
 				{
-					this._date = value;
-					this.NotifyPropertyChanged("Date");
+					this._deadline = value;
+					this.NotifyPropertyChanged("Deadline");
 				}
 			}
 		}

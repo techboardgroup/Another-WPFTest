@@ -21,6 +21,7 @@ namespace CRUD_WPF.Pages
     /// </summary>
     public partial class Category : Page
     {
+
         private ObservableCollection<Models.Category> category = new ObservableCollection<Models.Category>();
 
         public Category()
