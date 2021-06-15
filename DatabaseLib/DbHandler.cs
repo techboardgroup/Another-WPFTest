@@ -34,5 +34,10 @@ namespace DatabaseLib
                 Console.WriteLine(singleStock.Symbol);
             }
         }
+
+        public void AddCategory()
+        {
+
+        }
     }
 }

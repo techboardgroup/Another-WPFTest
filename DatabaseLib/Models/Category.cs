@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CRUD_WPF.Models
+namespace DatabaseLib.Models
 {
-	public class Category : INotifyPropertyChanged
+    public class Category : INotifyPropertyChanged
 	{
-		private int _id;
+		private int _id; 
 
 		private string _name;
 
@@ -28,7 +28,7 @@ namespace CRUD_WPF.Models
 			{
 				if (this._id != value)
 				{
-					this._id = value;
+                    this._id = value;
 					this.NotifyPropertyChanged("Id");
 				}
 			}
@@ -67,6 +67,7 @@ namespace CRUD_WPF.Models
 			if (this.PropertyChanged != null)
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
 		}
+
 
 	}
 }

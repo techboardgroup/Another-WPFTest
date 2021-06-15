@@ -32,6 +32,7 @@ namespace CRUD_WPF.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            // DatabaseLib.Models.Category cat = new DatabaseLib.Models.Category();
             category.Add(new Models.Category() { Name = txtName.Text, Group = txtGroup.Text });
             App.Current.Properties["category"] = category;
             lbCategory.ItemsSource = category;

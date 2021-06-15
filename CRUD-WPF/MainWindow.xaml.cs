@@ -1,4 +1,5 @@
-﻿using CRUD_WPF.Models;
+﻿using CRUD_WPF.Database;
+using CRUD_WPF.Models;
 using CRUD_WPF.Pages;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace CRUD_WPF
         public MainWindow()
         {
             InitializeComponent();
-            DatabaseLib.DatabaseHandler db = new DatabaseLib.DatabaseHandler();
+            DatabaseHandler db = new DatabaseHandler();
             // lbUsers.ItemsSource = users;
         }
 
